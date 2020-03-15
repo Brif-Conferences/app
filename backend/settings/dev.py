@@ -63,11 +63,20 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 SITE_ID = 1
+
 CORS_ORIGIN_ALLOW_ALL = True
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
+# client ID from the Google Developer Console
+GOOGLEAUTH_CLIENT_ID = '680529475337-u3hesd306f504qnucn9quoqhs3n7r3re.apps.googleusercontent.com'
+# client secret from the Google Developer Console
+GOOGLEAUTH_CLIENT_SECRET = 'wZ-j-a-2kc9ced9avEgrUVeY'
+# your app's domain, used to construct callback URLs
+# GOOGLEAUTH_CALLBACK_DOMAIN = 'localhost'
+GOOGLEAUTH_CALLBACK_DOMAIN = 'http://localhost:8000/callback'
+
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
@@ -75,8 +84,20 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.BasicAuthentication',
     ),
 }
+
 # `django-rest-auth` authorises via simple tokens, but we need JWT-tokens...
 REST_USE_JWT = True
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}
 
 ROOT_URLCONF = 'backend.urls'
 

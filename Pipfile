@@ -10,6 +10,10 @@ gunicorn = "*"
 whitenoise = "*"
 dj-database-url = "*"
 psycopg2-binary = "*"
+djangorestframework-jwt = "*"
+django-allauth = "*"
+django-rest-auth = "*"
+django-cors-headers = "*"
 
 [dev-packages]
 

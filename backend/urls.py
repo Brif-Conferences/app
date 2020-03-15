@@ -23,6 +23,9 @@ urlpatterns = [
 
     # http://localhost:8000/api/admin/
     path('api/admin/', admin.site.urls),
+
+    # http://localhost:8000/api/auth/, Google+ API OAuth2...
+    path('api/auth/', include('backend.auth.urls')),
+    # For callback URI...
+    path(r'^accounts/', include('allauth.urls'), name='socialaccount_signup'),
 ]
-
-
