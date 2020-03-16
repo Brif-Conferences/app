@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'backend.users.apps.UsersConfig',
+    'backend.users.apps',
     'backend.api',
 ]
 
