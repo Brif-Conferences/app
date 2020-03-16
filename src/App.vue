@@ -56,8 +56,9 @@ export default {
   },
   methods: {
     onGoogleSignInSuccess (resp) {
-      const token = resp.Zi.access_token
-      axios.post('http://localhost:8000/auth/google/', {
+      // const token = resp.response.data.access_token
+      const token = resp.access_token
+      axios.post('http://localhost:8000/api/auth/google/', {
         access_token: token
       })
         .then(resp => {
