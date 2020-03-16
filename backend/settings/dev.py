@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    'backend.users.apps.UsersConfig',
     'backend.api',
 ]
 
@@ -64,6 +65,8 @@ MIDDLEWARE = [
 ]
 SITE_ID = 1
 
+AUTH_USER_MODEL = 'users.User'
+
 CORS_ORIGIN_ALLOW_ALL = True
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
@@ -74,8 +77,8 @@ GOOGLEAUTH_CLIENT_ID = '680529475337-u3hesd306f504qnucn9quoqhs3n7r3re.apps.googl
 # client secret from the Google Developer Console
 GOOGLEAUTH_CLIENT_SECRET = 'wZ-j-a-2kc9ced9avEgrUVeY'
 # your app's domain, used to construct callback URLs
-# GOOGLEAUTH_CALLBACK_DOMAIN = 'localhost'
-GOOGLEAUTH_CALLBACK_DOMAIN = 'http://localhost:8000/callback'
+GOOGLEAUTH_CALLBACK_DOMAIN = 'localhost'
+# GOOGLEAUTH_CALLBACK_DOMAIN = 'http://localhost:8000/callback'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -84,9 +87,13 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.BasicAuthentication',
     ),
 }
+REST_AUTH_SERIALIZERS = {
+    'USER_DETAILS_SERIALIZER': 'users.serializers.UserSerializer'
+}
 
 # `django-rest-auth` authorises via simple tokens, but we need JWT-tokens...
 REST_USE_JWT = True
+
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
         'SCOPE': [
